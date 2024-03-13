@@ -1,5 +1,7 @@
 Use the command nano ~/.bash_profile or nano ~/.zshrc (for newer MacOS versions) to open the profile file in a text editor.
-export OPENAI_API_KEY=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
+export OPENAI_API_KEY=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
 Then source it
 
 Test echo $OPENAI_API_KEY
+
+RUN npx expo start

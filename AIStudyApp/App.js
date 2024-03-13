@@ -17,7 +17,7 @@ export default function App() {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer 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`,
 
           },
         }

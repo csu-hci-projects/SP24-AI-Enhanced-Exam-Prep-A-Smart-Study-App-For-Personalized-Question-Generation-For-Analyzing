@@ -7,25 +7,11 @@ export default function App() {
 
   const getOpenAIResponse = async () => {
     try {
-      // In a real app, replace the direct API call with a request to your own backend.
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          model: 'gpt-3.5-turbo',
-          messages: [{ role: 'system', content: 'You are a helpful assistant.' }],
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`,
-
-          },
-        }
-      );
+      const response = await axios.post('http://localhost:3001/api/openai');
       setResponseText(response.data.choices[0].message.content);
     } catch (error) {
-      console.error(error);
-      setResponseText('Failed to get a response.');
+      console.error('Error details:', error.response ? error.response.data : error.message);
+      setResponseText('Failed to get a response. Error: ' + (error.response ? error.response.data : error.message));
     }
   };
 

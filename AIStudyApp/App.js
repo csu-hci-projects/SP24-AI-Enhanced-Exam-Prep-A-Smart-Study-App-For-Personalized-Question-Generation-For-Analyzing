@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TextInput, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import getOpenAIResponse from './components/getOpenAIResponse';
+import handleAnswerSelect from './components/handleAnswerSelect';
 import styles from './styles';
 
 export default function App() {
@@ -9,15 +10,6 @@ export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState({ question: '', choices: [] });
   const [feedback, setFeedback] = useState('');
   const [apiResponse, setApiResponse] = useState('');
-
-  const handleAnswerSelect = (choiceLabel) => {
-    const correctChoice = currentQuestion.choices.find(choice => choice.isCorrect);
-    if (choiceLabel === correctChoice.label) {
-      setFeedback('Correct!');
-    } else {
-      setFeedback('Wrong, try again!');
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -49,7 +41,7 @@ export default function App() {
           <TouchableOpacity 
             key={index} 
             style={styles.choiceButton} 
-            onPress={() => handleAnswerSelect(choice.label)}
+            onPress={() => handleAnswerSelect(choice.label, currentQuestion, setFeedback)}
           >
             <Text style={styles.choiceText}>{choice.label}. {choice.text}</Text>
           </TouchableOpacity>

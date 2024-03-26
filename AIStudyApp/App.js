@@ -16,7 +16,7 @@ export default function App() {
             {
                 model: 'gpt-3.5-turbo',
                 messages: [
-                    { role: 'system', content: 'Generate one Multiple Choice Quiz Question based on the notes provided. The answer should be the first of the answer choices. Be sure there are at least 4 answer choices. Example format: What does the term "BIDMAS" or "BODMAS" represent in the context of mathematical operations? \nA) The order of operations to perform calculations correctly. \nB) A method for simplifying fractions. \nC) A set of rules for working with decimals. \nD) A formula for finding the area of shapes.' },
+                    { role: 'system', content: 'Generate one Multiple Choice Quiz Question based on the notes provided. The answer should be the first of the answer choices. Be sure there are at least 4 answer choices. Make the questions unique from previous questions' },
                     { role: 'user', content: userInput },
                 ],
             },
@@ -92,6 +92,15 @@ export default function App() {
     </View>
   );
 }
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]]; // swap elements
+  }
+  return array;
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -173,11 +182,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// Function to shuffle an array
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-    [array[i], array[j]] = [array[j], array[i]]; // swap elements
-  }
-  return array;
-}
+

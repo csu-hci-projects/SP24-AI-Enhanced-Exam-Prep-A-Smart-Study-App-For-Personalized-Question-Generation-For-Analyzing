@@ -25,6 +25,7 @@ app.post('/generate-question', async (req, res) => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer DELETEsk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9`,
+                    //FIX HERE
                 }
             }
         );

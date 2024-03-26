@@ -1,7 +1,7 @@
-Use the command nano ~/.bash_profile or nano ~/.zshrc (for newer MacOS versions) to open the profile file in a text editor.
-export OPENAI_API_KEY=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
-Then source it
 
-Test echo $OPENAI_API_KEY
+API KEY = DELETEsk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9DELETE
+BESURE TO FIX THE API IN SERVER ON LINE 27
 
-RUN npx expo start
+RUN CLIENT: npx expo start
+
+RUN SERVER: node --experimental-modules server.mjs

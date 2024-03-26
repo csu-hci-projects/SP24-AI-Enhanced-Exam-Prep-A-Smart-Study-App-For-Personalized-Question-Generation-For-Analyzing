@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import styles from './styles';
+import shuffleArray from './components/shuffleArray';
+
 
 
 export default function App() {
@@ -95,12 +97,6 @@ export default function App() {
   );
 }
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); 
-    [array[i], array[j]] = [array[j], array[i]]; 
-  }
-  return array;
-}
+
 
 

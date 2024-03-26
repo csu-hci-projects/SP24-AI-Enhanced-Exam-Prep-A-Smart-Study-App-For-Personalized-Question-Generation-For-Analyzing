@@ -15,7 +15,7 @@ const getOpenAIResponse = async (userInput, setCurrentQuestion, setApiResponse, 
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer DeleteThissk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9',
+                    'Authorization': 'Bearer Deletethissk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9',
                 }
             }
         );

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import styles from './styles';
+
 
 export default function App() {
   const [userInput, setUserInput] = useState('');
@@ -23,7 +25,7 @@ export default function App() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer DeleteThissk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9',
+                    'Authorization': 'Bearer deleteThissk-07gGfvhERvsCWet5NyErT3BlbkFJs2OEvlQlIwFxu7TglyS9',
                 }
             }
         );
@@ -95,91 +97,10 @@ export default function App() {
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-    [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    const j = Math.floor(Math.random() * (i + 1)); 
+    [array[i], array[j]] = [array[j], array[i]]; 
   }
   return array;
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'space-between',
-  },
-  chatContainer: {
-    flex: 1,
-    padding: 10,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    margin: 10,
-    paddingLeft: 10,
-  },
-  userChat: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#0084ff',
-    color: '#fff',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  aiChat: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  header: {
-    backgroundColor: '#4a90e2',
-    padding: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  question: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
-    textAlign: 'center',
-  },
-  choicesContainer: {
-    marginVertical: 10,
-  },
-  choiceButton: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  choiceText: {
-    fontSize: 16,
-    color: 'black', 
-  },
-  feedback: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red', 
-    padding: 10,
-    textAlign: 'center',
-  },
-  input: {
-    flex: 1,
-    height: 100, // Adjusted for better input field space
-    borderColor: 'gray',
-    borderWidth: 1,
-    margin: 10,
-    padding: 10,
-    textAlignVertical: 'top', // Ensures text starts from the top in multiline input
-  },
-});
 
 

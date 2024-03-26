@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, StatusBar, Text } from 'react-native'; // Added Text here
+import { View, Button, StatusBar, Text } from 'react-native'; 
 import getOpenAIResponse from './components/getOpenAIResponse';
 import handleAnswerSelect from './components/handleAnswerSelect';
 import styles from './styles';

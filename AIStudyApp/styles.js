@@ -55,4 +55,27 @@ export default StyleSheet.create({
         padding:   10,
         textAlign: 'center',
     },
+    menuContainer: {
+        position: 'absolute',
+        top: 60, 
+        right: 10,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        zIndex: 1000, 
+    },
+    menuItem: {
+        padding: 10,
+        borderWidth: 0.5,
+        borderColor: 'gray',
+        backgroundColor: '#f9f9f9',
+    },
+    header: {
+        backgroundColor: '#4a90e2',
+        padding: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
 });

@@ -2,6 +2,8 @@ import express from 'express';
 import axios from 'axios';
 import os from 'os';
 import cors from 'cors';
+import users from './credentials.json' assert { type: 'json' };
+
 
 const app = express();
 const port = 3000;
@@ -9,9 +11,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-const users = [
-    { username: 'admin', password: 'admin' }, 
-];
+
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
@@ -39,7 +39,7 @@ app.post('/generate-question', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+                    'Authorization': `Bearer API_KEY_HERE`,
                     //FIX HERE
                 }
             }

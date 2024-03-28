@@ -11,7 +11,7 @@ app.use(cors());
 
 const users = [
     { username: 'admin', password: 'admin' }, 
-  ];
+];
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;

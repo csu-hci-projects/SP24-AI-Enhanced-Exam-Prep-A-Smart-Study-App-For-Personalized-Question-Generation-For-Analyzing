@@ -6,8 +6,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 const __filename = new URL(import.meta.url).pathname;
-// If on Windows, you might need to adjust __filename like so:
-// const __filename = path.resolve(new URL(import.meta.url).pathname.substring(1));
 const __dirname = path.dirname(__filename);
 const filePath = path.join(__dirname, 'credentials.json');
 
@@ -72,7 +70,7 @@ app.post('/generate-question', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer API KEY HERE`, // Use environment variable
+                    'Authorization': `Bearer API_KEY`,
                 }
             }
         );

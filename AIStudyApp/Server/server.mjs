@@ -9,6 +9,21 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
+const users = [
+    { username: 'admin', password: 'admin' }, 
+  ];
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find(user => user.username === username && user.password === password);
+    
+    if (user) {
+        res.json({ success: true, message: 'Authentication successful' });
+    } else {
+        res.status(401).json({ success: false, message: 'Authentication failed. User not found or wrong password.' });
+    }
+});
+
 app.post('/generate-question', async (req, res) => {
     const { userInput } = req.body;
     try {

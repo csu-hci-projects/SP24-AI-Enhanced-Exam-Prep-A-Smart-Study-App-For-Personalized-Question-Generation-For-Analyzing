@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, StatusBar, Text } from 'react-native'; 
+import { View, Button, StatusBar, Text, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'; 
 import getOpenAIResponse from './getOpenAIResponse';
 import handleAnswerSelect from './handleAnswerSelect';
 import styles from '../styles'; 
@@ -16,19 +16,28 @@ const MainContent = ({ navigation }) => {
     const [apiResponse, setApiResponse] = useState('');
 
     return (
-        <View style={styles.container}>
-            <HeaderComponent />
-            <TextInputComponent userInput={userInput} setUserInput={setUserInput} />
-            <Button 
-                title="Generate A Question" 
-                onPress={() => getOpenAIResponse(userInput, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback)} 
-            />
-            <Text style={styles.question}>{currentQuestion.question}</Text>
-            <ChoicesContainer choices={currentQuestion.choices} handleAnswerSelect={(choiceLabel) => handleAnswerSelect(choiceLabel, currentQuestion, setFeedback)} />
-            <Text style={styles.feedback}>{feedback}</Text>
-            <ChatHistoryComponent apiResponse={apiResponse} />
-            <StatusBar style="auto" />
-        </View>
+        <KeyboardAvoidingView 
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+        >
+            <View style={styles.container}>
+                <StatusBar style="auto" />
+                <HeaderComponent />
+                <TextInputComponent userInput={userInput} setUserInput={setUserInput} />
+                <Button 
+                    title="Generate A Question" 
+                    onPress={() =>  {
+                        Keyboard.dismiss();
+                        getOpenAIResponse(userInput, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback);
+                    }} 
+                />
+                <Text style={styles.question}>{currentQuestion.question}</Text>
+                <ChoicesContainer choices={currentQuestion.choices} handleAnswerSelect={(choiceLabel) => handleAnswerSelect(choiceLabel, currentQuestion, setFeedback)} />
+                <Text style={styles.feedback}>{feedback}</Text>
+                <ChatHistoryComponent apiResponse={apiResponse} />
+            </View>
+        </KeyboardAvoidingView>
     );
 };
 

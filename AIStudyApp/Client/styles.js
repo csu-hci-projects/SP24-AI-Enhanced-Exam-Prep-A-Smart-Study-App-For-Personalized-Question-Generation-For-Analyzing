@@ -11,7 +11,9 @@ export default StyleSheet.create({
         padding:10,
     },
     input: {
-        height: 300, 
+        width:  '80%',
+        alignSelf: 'center',
+        height: 200, 
         borderColor: 'gray',
         borderWidth: 0.1,
         margin: 10,

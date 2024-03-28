@@ -92,4 +92,39 @@ export default StyleSheet.create({
         borderColor: '#ccc',
         borderRadius: 5,
     },
+    RegisterContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5', 
+    },
+    RegisterFormContainer: {
+        width: '80%', 
+    },
+    RegisterHeader: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+        color: '#333', 
+    },
+    RegisterInput: {
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 15,
+        fontSize: 16,
+    },
+    RegisterButton: {
+        backgroundColor: '#4a90e2',
+        padding: 15,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    RegisterButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });

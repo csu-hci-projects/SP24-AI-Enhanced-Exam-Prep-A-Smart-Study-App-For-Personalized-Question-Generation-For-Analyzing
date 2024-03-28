@@ -78,4 +78,18 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    LoginContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    LoginInput: {
+        width: '100%',
+        marginBottom: 10,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+    },
 });

@@ -12,7 +12,7 @@ const LoginPage = ({ navigation }) => {
             password,
         };
 
-        fetch('http://129.82.44.245:3000/login', {
+        fetch('http://129.82.44.102:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

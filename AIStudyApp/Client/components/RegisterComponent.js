@@ -8,7 +8,7 @@ const RegisterComponent = ({ navigation }) => {
 
     const registerUser = async () => {
         try {
-            const response = await fetch('http://129.82.44.245:3000/register', {
+            const response = await fetch('http://129.82.44.102:3000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import shuffleArray from './shuffleArray';
 
 const getOpenAIResponse = async (userInput, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback) => {
     try {
-        const response = await axios.post('http://129.82.44.245:3000/generate-question', {
+        const response = await axios.post('http://129.82.44.102:3000/generate-question', {
             userInput: userInput,
         });
         const data = response.data;

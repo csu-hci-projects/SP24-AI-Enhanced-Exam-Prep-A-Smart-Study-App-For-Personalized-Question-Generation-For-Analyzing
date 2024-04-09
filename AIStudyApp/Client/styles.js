@@ -132,16 +132,54 @@ export default StyleSheet.create({
     noteContainer: {
         borderWidth: 1,
         borderColor: '#ddd',
+        maxWidth: '10%',
         padding: 10,
         marginVertical: 5,
         backgroundColor: '#f9f9f9',
+        aspectRatio: 0.75, 
+        width: '50%', 
+        marginLeft: '2%',
+        marginTop: '2%',
+        marginRight: '2%',
+        marginBottom: '2%',
     },
     noteTitle: {
         fontSize: 16,
-        fontWeight: 'bold',
         marginBottom: 5,
+        marginTop: 10,
+        textAlign: 'center',
     },
     noteContent: {
         fontSize: 14,
+        width: '100%',
+        marginBottom: 5,
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+    },
+    sectionTitle: {
+        fontWeight: "bold"
+    }
 });

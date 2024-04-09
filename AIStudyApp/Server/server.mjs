@@ -70,7 +70,7 @@ app.post('/generate-question', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer API_KEY`,
+                    'Authorization': `Bearer API_KEY_HERE`,
                 }
             }
         );
@@ -80,6 +80,27 @@ app.post('/generate-question', async (req, res) => {
         res.status(500).json({ error: 'Failed to get a response from OpenAI.' });
     }
 });
+
+app.get('/notes/:username', async (req, res) => {
+    const { username } = req.params;
+
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const users = JSON.parse(data);
+        const user = users.find(user => user.username === username);
+
+        if (user) {
+            res.json({ success: true, notes: user.notes });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found.' });
+        }
+    } catch (error) {
+        console.error('Error fetching user notes:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+});
+
+
 
 
 app.listen(port, '0.0.0.0', () => {

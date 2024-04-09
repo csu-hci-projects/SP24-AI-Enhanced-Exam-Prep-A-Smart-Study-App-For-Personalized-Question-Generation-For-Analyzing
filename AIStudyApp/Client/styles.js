@@ -129,4 +129,19 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    noteContainer: {
+        borderWidth: 1,
+        borderColor: '#ddd',
+        padding: 10,
+        marginVertical: 5,
+        backgroundColor: '#f9f9f9',
+    },
+    noteTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    noteContent: {
+        fontSize: 14,
+    },
 });

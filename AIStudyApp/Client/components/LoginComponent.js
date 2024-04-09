@@ -22,7 +22,7 @@ const LoginPage = ({ navigation }) => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                navigation.navigate('Main');
+                navigation.navigate('Main', { username: username});
             } else {
                 Alert.alert('Login Failed', data.message);
             }

@@ -8,12 +8,13 @@ import TextInputComponent from './TextInputComponent';
 import ChoicesContainer from './ChoicesContainer';
 import ChatHistoryComponent from './ChatHistoryComponent';
 
-const MainContent = ({ navigation }) => {
+const MainContent = ({ route, navigation }) => {
     const [userInput, setUserInput] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState({ question: '', choices: [] });
     const [feedback, setFeedback] = useState('');
     const [apiResponse, setApiResponse] = useState('');
+    const username = route.params?.username;
 
     return (
         <KeyboardAvoidingView 
@@ -31,6 +32,14 @@ const MainContent = ({ navigation }) => {
                         Keyboard.dismiss();
                         getOpenAIResponse(userInput, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback);
                     }} 
+                />
+                <Button 
+                    title="Notes" 
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        //navigation.navigate('Notes');
+                        navigation.navigate('Notes', { username: username });
+                    }}
                 />
                 <Text style={styles.question}>{currentQuestion.question}</Text>
                 <ChoicesContainer choices={currentQuestion.choices} handleAnswerSelect={(choiceLabel) => handleAnswerSelect(choiceLabel, currentQuestion, setFeedback)} />

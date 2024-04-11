@@ -129,6 +129,38 @@ app.patch('/notes/:username', async (req, res) => {
     }
 });
 
+app.delete('/notes/:username/:title', async (req, res) => {
+    const { username, title } = req.params;
+    console.log(`Received delete for username: ${username} and title: ${title}`);  // Check the values
+
+
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        let users = JSON.parse(data);
+        const userIndex = users.findIndex(user => user.username === username);
+
+        if (userIndex === -1) {
+            console.log('User not found');
+            return res.status(404).json({ success: false, message: 'User not found.' });
+        }
+
+        const notes = users[userIndex].notes;
+        const newNotes = notes.filter(note => note.title !== title);
+        
+        if (notes.length === newNotes.length) {
+            console.log('Note not found');
+            return res.status(404).json({ success: false, message: 'Note not found.' });
+        }
+
+        users[userIndex].notes = newNotes;
+        await fs.writeFile(filePath, JSON.stringify(users, null, 2), 'utf8');
+        res.json({ success: true, message: 'Note deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting note:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+});
+
 
 
 

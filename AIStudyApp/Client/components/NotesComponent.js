@@ -65,12 +65,31 @@ const NotesComponent = ({ route }) => {
         }
     };
 
+    const deleteNote = async (noteTitle) => {
+        console.log(`Attempting to delete note: ${noteTitle}`);
+        try {
+            const encodedTitle = encodeURIComponent(noteTitle);
+            console.log(`Encoded title: ${encodedTitle}`);
+            const response = await axios.delete(`http://129.82.44.102:3000/notes/${username}/${encodedTitle}`);
+            console.log('Deletion response:', response.data);
+            fetchNotes();
+        } catch (error) {
+            console.error('Error deleting note:', error);
+        }
+    };
+    
+    
+    
+
     const renderNoteItem = (note) => (
         <View key={note.id} style={styles.noteContainer}>
             <TouchableOpacity onPress={() => showNoteDetails(note)}>
                 <Text style={styles.noteTitle}>{note.title}</Text>
             </TouchableOpacity>
-            <Button title="Edit" onPress={() => startEditNote(note)} />
+            <View style={styles.buttonContainer}>
+                <Button title="Edit" onPress={() => startEditNote(note)} />
+                <Button title="Delete" color="red" onPress={() => deleteNote(note.title)} />
+            </View>
         </View>
     );
 

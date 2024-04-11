@@ -161,6 +161,33 @@ app.delete('/notes/:username/:title', async (req, res) => {
     }
 });
 
+app.post('/notes/:username/add', async (req, res) => {
+    const { username } = req.params;
+    const { title, content } = req.body;
+
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        let users = JSON.parse(data);
+        let user = users.find(user => user.username === username);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found.' });
+        }
+
+        // Check if the note title already exists
+        if (user.notes.some(note => note.title === title)) {
+            return res.status(400).json({ success: false, message: 'Note title already exists.' });
+        }
+
+        // Add new note
+        user.notes.push({ title, content });
+        await fs.writeFile(filePath, JSON.stringify(users, null, 2), 'utf8');
+        res.json({ success: true, message: 'Note added successfully.' });
+    } catch (error) {
+        console.error('Error adding new note:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+});
 
 
 

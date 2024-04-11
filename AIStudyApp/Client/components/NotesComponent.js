@@ -12,6 +12,8 @@ const NotesComponent = ({ route }) => {
     const [selectedNote, setSelectedNote] = useState(null);
     const [editNote, setEditNote] = useState({ id: '', title: '', content: '' });
     const username = route.params?.username;
+    const [newNoteTitle, setNewNoteTitle] = useState('');
+    const [newNoteContent, setNewNoteContent] = useState('');
 
     useEffect(() => {
         fetchNotes();
@@ -78,7 +80,26 @@ const NotesComponent = ({ route }) => {
         }
     };
     
+    const addNewNote = async () => {
+        if (!newNoteTitle || !newNoteContent) {
+            alert('Title and content are required');
+            return;
+        }
     
+        try {
+            const response = await axios.post(`http://129.82.44.102:3000/notes/${username}/add`, {
+                title: newNoteTitle,
+                content: newNoteContent
+            });
+            alert(response.data.message);
+            setNewNoteTitle('');
+            setNewNoteContent('');
+            fetchNotes();
+        } catch (error) {
+            console.error('Error adding new note:', error);
+            alert('Failed to add note');
+        }
+    };
     
 
     const renderNoteItem = (note) => (
@@ -94,12 +115,13 @@ const NotesComponent = ({ route }) => {
     );
 
     return (
-        <ScrollView
-            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        >
+        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Your Notes</Text>
             </View>
+            <TextInput style={styles.input} value={newNoteTitle} onChangeText={setNewNoteTitle} placeholder="New Note Title" />
+                <TextInput style={[styles.input, { height: 100, textAlignVertical: 'top' }]} value={newNoteContent} onChangeText={setNewNoteContent} placeholder="New Note Content" multiline={true} />
+                <Button title="Add Note" onPress={addNewNote} />
             {isLoading ? (
                 <Text style={styles.feedback}>Loading...</Text>
             ) : userNotes.length ? (
@@ -111,6 +133,7 @@ const NotesComponent = ({ route }) => {
             {renderEditNoteModal()}
         </ScrollView>
     );
+    
 
     function renderNoteModal() {
         return (

@@ -37,7 +37,6 @@ const MainContent = ({ route, navigation }) => {
                     title="Notes" 
                     onPress={() => {
                         Keyboard.dismiss();
-                        //navigation.navigate('Notes');
                         navigation.navigate('Notes', { username: username });
                     }}
                 />

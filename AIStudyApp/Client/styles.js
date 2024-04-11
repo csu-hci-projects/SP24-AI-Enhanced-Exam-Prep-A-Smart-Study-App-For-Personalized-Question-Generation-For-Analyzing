@@ -10,7 +10,7 @@ export default StyleSheet.create({
         flex:   1,
         padding:10,
     },
-    input: {
+    TextInput: {
         width:  '80%',
         alignSelf: 'center',
         height: 200, 
@@ -154,32 +154,39 @@ export default StyleSheet.create({
         width: '100%',
         marginBottom: 5,
     },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-    },
     modalView: {
+        width: '70%',
+        height: '60%',
         margin: 20,
+        marginTop: '10%',
         backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
+        alignItems: "center",  
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.25)',
+        elevation:4  },
     modalText: {
         marginBottom: 15,
         textAlign: "center"
     },
     sectionTitle: {
         fontWeight: "bold"
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    sectionTitle: {
+        fontWeight: "bold"
+    },
+    input: {
+        width: '80%',
+        padding: 10,
+        margin: 10,
+        borderWidth: 1,
+        borderColor: '#cccccc',
+        borderRadius: 5,
+    },
 });

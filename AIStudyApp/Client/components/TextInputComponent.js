@@ -4,7 +4,7 @@ import styles from '../styles';
 
 const TextInputComponent = ({ userInput, setUserInput }) => (
     <TextInput
-        style={styles.input}
+        style={styles.TextInput}
         onChangeText={setUserInput}
         value={userInput}
         placeholder="Enter your notes here"

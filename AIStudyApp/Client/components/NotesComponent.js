@@ -105,11 +105,10 @@ const NotesComponent = ({ route }) => {
                     <View style={styles.modalView}>
                         {selectedNote && (
                             <>
-                                <Text style={styles.modalText}>{selectedNote.title}</Text>
+                                <h2 style={styles.modalText}>{selectedNote.title}</h2>
                                 <Text>{selectedNote.content}</Text>
                                 {selectedNote.section && selectedNote.section.map((section, index) => (
                                     <View key={index}>
-                                        <Text style={styles.sectionTitle}>{section.title}</Text>
                                         <Text>{section.content}</Text>
                                     </View>
                                 ))}
@@ -132,12 +131,7 @@ const NotesComponent = ({ route }) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(text) => setEditNote(prevState => ({ ...prevState, title: text }))}
-                            value={editNote.title}
-                            placeholder="Note Title"
-                        />
+                        <h2>{editNote.title}</h2>
                         <TextInput
                             style={[styles.input, { height: 100, textAlignVertical: 'top' }]}
                             onChangeText={(text) => setEditNote(prevState => ({ ...prevState, content: text }))}

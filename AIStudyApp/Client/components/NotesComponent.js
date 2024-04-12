@@ -14,6 +14,8 @@ const NotesComponent = ({ route }) => {
     const username = route.params?.username;
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteContent, setNewNoteContent] = useState('');
+    const [showAddNote, setShowAddNote] = useState(false);
+
 
     useEffect(() => {
         fetchNotes();
@@ -102,37 +104,71 @@ const NotesComponent = ({ route }) => {
     };
     
 
-    const renderNoteItem = (note) => (
-        <View key={note.id} style={styles.noteContainer}>
-            <TouchableOpacity onPress={() => showNoteDetails(note)}>
-                <Text style={styles.noteTitle}>{note.title}</Text>
-            </TouchableOpacity>
-            <View style={styles.buttonContainer}>
-                <Button title="Edit" onPress={() => startEditNote(note)} />
-                <Button title="Delete" color="red" onPress={() => deleteNote(note.title)} />
+    const renderNoteItem = (note, index) => {
+        if (index === 0) {
+            return (
+                <TouchableOpacity
+                    key="add-note"
+                    onPress={() => setShowAddNote(!showAddNote)}
+                    style={styles.noteContainer}
+                >
+                    <Text style={{ color: 'Black', fontSize: 16, textAlign: 'center' }}>
+                        {showAddNote ? "Hide Add Note" : "Add Note"}
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
+    
+        return (
+            <View key={note.id} style={styles.noteContainer}>
+                <TouchableOpacity onPress={() => showNoteDetails(note)}>
+                    <Text style={styles.noteTitle}>{note.title}</Text>
+                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                    <Button title="Edit" onPress={() => startEditNote(note)} />
+                    <Button title="Delete" color="red" onPress={() => deleteNote(note.title)} />
+                </View>
             </View>
-        </View>
-    );
+        );
+    };
+    
 
     return (
         <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Your Notes</Text>
             </View>
-            <TextInput style={styles.input} value={newNoteTitle} onChangeText={setNewNoteTitle} placeholder="New Note Title" />
-                <TextInput style={[styles.input, { height: 100, textAlignVertical: 'top' }]} value={newNoteContent} onChangeText={setNewNoteContent} placeholder="New Note Content" multiline={true} />
-                <Button title="Add Note" onPress={addNewNote} />
             {isLoading ? (
                 <Text style={styles.feedback}>Loading...</Text>
-            ) : userNotes.length ? (
-                userNotes.map(renderNoteItem)
             ) : (
-                <Text style={styles.feedback}>No notes found.</Text>
+                <View style={styles.notesListContainer}>
+                    {[{ id: 'add-note', special: true }, ...userNotes].map(renderNoteItem)}
+                </View>
+            )}
+            {showAddNote && (
+                <>
+                    <TextInput 
+                        style={styles.input} 
+                        value={newNoteTitle} 
+                        onChangeText={setNewNoteTitle} 
+                        placeholder="New Note Title" 
+                    />
+                    <TextInput 
+                        style={[styles.input, { height: 100, textAlignVertical: 'top' }]} 
+                        value={newNoteContent} 
+                        onChangeText={setNewNoteContent} 
+                        placeholder="New Note Content" 
+                        multiline={true} 
+                    />
+                    <Button title="Add Note" onPress={() => { addNewNote(); setShowAddNote(!showAddNote); }} />
+                </>
             )}
             {renderNoteModal()}
             {renderEditNoteModal()}
         </ScrollView>
     );
+    
+    
     
 
     function renderNoteModal() {

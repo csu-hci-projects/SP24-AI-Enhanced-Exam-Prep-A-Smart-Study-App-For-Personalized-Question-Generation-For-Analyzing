@@ -132,17 +132,21 @@ export default StyleSheet.create({
     noteContainer: {
         borderWidth: 1,
         borderColor: '#ddd',
-        maxWidth: '10%',
-        padding: 10,
-        marginVertical: 5,
+        padding: 20,
+        margin: 20,
         backgroundColor: '#f9f9f9',
-        aspectRatio: 0.75, 
-        width: '50%', 
-        marginLeft: '2%',
-        marginTop: '2%',
-        marginRight: '2%',
-        marginBottom: '2%',
+        width: '15%',
+        aspectRatio: .78,
     },
+
+    notesListContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+    },
+    
+    
     noteTitle: {
         fontSize: 16,
         marginBottom: 5,

@@ -146,6 +146,8 @@ export default StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'stretch',
+        flex: 1,
+        paddingBottom: 20,
     },
     
     

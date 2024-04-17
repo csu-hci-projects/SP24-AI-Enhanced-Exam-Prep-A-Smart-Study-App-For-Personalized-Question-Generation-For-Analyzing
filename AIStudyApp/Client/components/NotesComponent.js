@@ -107,15 +107,51 @@ const NotesComponent = ({ route }) => {
     const renderNoteItem = (note, index) => {
         if (index === 0) {
             return (
-                <TouchableOpacity
-                    key="add-note"
-                    onPress={() => setShowAddNote(!showAddNote)}
-                    style={styles.noteContainer}
-                >
-                    <Text style={{ color: 'Black', fontSize: 16, textAlign: 'center' }}>
-                        {showAddNote ? "Hide Add Note" : "Add Note"}
-                    </Text>
-                </TouchableOpacity>
+                <>
+                    <TouchableOpacity
+                        key="add-note"
+                        onPress={() => setShowAddNote(!showAddNote)}
+                        style={{...styles.noteContainer, width: '100%'}}
+                    >
+                        <Text style={{ color: 'Black', fontSize: 16, textAlign: 'center' }}>
+                            {showAddNote ? "Hide Add Note" : "Add Note"}
+                        </Text>
+                    </TouchableOpacity>
+                    {showAddNote && (
+                        <>
+                            <TextInput
+                                style={{ ...styles.input, width: '100%' }}
+                                value={newNoteTitle}
+                                onChangeText={setNewNoteTitle}
+                                placeholder="New Note Title"
+                            />
+                            <TextInput
+                                style={[styles.input, { height: 300, textAlignVertical: 'top', width: '100%' }]}
+                                value={newNoteContent}
+                                onChangeText={setNewNoteContent}
+                                placeholder="New Note Content"
+                                multiline={true}
+                            />
+                            <TouchableOpacity
+                                onPress={() => {
+                                    addNewNote();
+                                    setShowAddNote(false);
+                                }}
+                                style={{
+                                    width: '100%',
+                                    marginTop: 10,
+                                    backgroundColor: '#2196F3',
+                                    padding: 10,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderRadius: 5
+                                }}
+                            >
+                                <Text style={{ color: 'white', fontSize: 16 }}>Add Note</Text>
+                            </TouchableOpacity>
+                        </>
+                    )}
+                </>
             );
         }
     
@@ -145,31 +181,10 @@ const NotesComponent = ({ route }) => {
                     {[{ id: 'add-note', special: true }, ...userNotes].map(renderNoteItem)}
                 </View>
             )}
-            {showAddNote && (
-                <>
-                    <TextInput 
-                        style={styles.input} 
-                        value={newNoteTitle} 
-                        onChangeText={setNewNoteTitle} 
-                        placeholder="New Note Title" 
-                    />
-                    <TextInput 
-                        style={[styles.input, { height: 100, textAlignVertical: 'top' }]} 
-                        value={newNoteContent} 
-                        onChangeText={setNewNoteContent} 
-                        placeholder="New Note Content" 
-                        multiline={true} 
-                    />
-                    <Button title="Add Note" onPress={() => { addNewNote(); setShowAddNote(!showAddNote); }} />
-                </>
-            )}
             {renderNoteModal()}
             {renderEditNoteModal()}
         </ScrollView>
     );
-    
-    
-    
 
     function renderNoteModal() {
         return (

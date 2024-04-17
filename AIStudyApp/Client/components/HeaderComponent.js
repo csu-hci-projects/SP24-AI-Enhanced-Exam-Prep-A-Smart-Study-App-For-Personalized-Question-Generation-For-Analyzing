@@ -8,17 +8,7 @@ const HeaderComponent = () => {
 
     return (
         <View style={styles.header}>
-            <Text style={styles.headerText}>Study App</Text>
-            <TouchableOpacity onPress={() => setMenuVisible(!menuVisible)}>
-                <Icon name="menu" size={30} color="#000" />
-            </TouchableOpacity>
-            {menuVisible && (
-                <View style={styles.menuContainer}>
-                    <Text style={styles.menuItem}>Item 1</Text>
-                    <Text style={styles.menuItem}>Item 2</Text>
-                    <Text style={styles.menuItem}>Item 3</Text>
-                </View>
-            )}
+            <Text style={styles.headerText}>Intellinote</Text>
         </View>
     );
 };

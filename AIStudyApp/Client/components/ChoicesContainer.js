@@ -12,7 +12,7 @@ const ChoicesContainer = ({ choices, handleAnswerSelect }) => (
                     onPress={() => handleAnswerSelect(choice.label)}
                 >
                     <Text style={styles.choiceText}>
-                        {choice.label}. {choice.text}
+                        {choice.text}
                     </Text>
                 </TouchableOpacity>
             ))

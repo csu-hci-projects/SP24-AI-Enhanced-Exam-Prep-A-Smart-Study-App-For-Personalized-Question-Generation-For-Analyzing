@@ -216,12 +216,17 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+        width: '80%',
+        height: '80%',
+        scrollable: true,
       },
       modalText: {
         marginBottom: 15,
         textAlign: "center",
         fontSize: 18,
         fontWeight: 'bold',
+        flex: 1,
+        width : '75%',
       },
       closeButton: {
         backgroundColor: '#2196F3',

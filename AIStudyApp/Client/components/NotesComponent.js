@@ -113,7 +113,7 @@ const NotesComponent = ({ route }) => {
                         onPress={() => setShowAddNote(!showAddNote)}
                         style={{...styles.noteContainer, width: '100%'}}
                     >
-                        <Text style={{ color: 'Black', fontSize: 16, textAlign: 'center' }}>
+                        <Text style={{ color: 'black', fontSize: 16, textAlign: 'center' }}>
                             {showAddNote ? "Hide Add Note" : "Add Note"}
                         </Text>
                     </TouchableOpacity>
@@ -178,7 +178,11 @@ const NotesComponent = ({ route }) => {
                 <Text style={styles.feedback}>Loading...</Text>
             ) : (
                 <View style={styles.notesListContainer}>
-                    {[{ id: 'add-note', special: true }, ...userNotes].map(renderNoteItem)}
+                    {[{ id: 'add-note', special: true }, ...userNotes].map((note, index) => (
+                        <View key={note.id || `note-${index}`} style={styles.noteContainer}>
+                            {renderNoteItem(note, index)}
+                        </View>
+                    ))}
                 </View>
             )}
             {renderNoteModal()}
@@ -189,31 +193,32 @@ const NotesComponent = ({ route }) => {
     function renderNoteModal() {
         return (
             <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={hideModal}
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={hideModal}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        {selectedNote && (
-                            <>
-                                <h2 style={styles.modalText}>{selectedNote.title}</h2>
-                                <Text>{selectedNote.content}</Text>
-                                {selectedNote.section && selectedNote.section.map((section, index) => (
-                                    <View key={index}>
-                                        <Text>{section.content}</Text>
-                                    </View>
-                                ))}
-                            </>
-                        )}
-                    </View>
-                    <Button style={styles.closeButton} onPress={hideModal} title="Close" />
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    {selectedNote && (
+                        <>
+                        <Text style={styles.modalText}>{selectedNote.title}</Text>
+                        <TextInput
+                            style={[styles.input, { color: 'black', height: '50%', textAlignVertical: 'top' }]}
+                            value={editNote.content}
+                            placeholder={selectedNote.content} 
+                            multiline={true}
+                            editable={false}
+                        />
+                        </>
+                    )}
                 </View>
+                <Button style={styles.closeButton} onPress={hideModal} title="Close" />
+            </View>
             </Modal>
         );
     }
-
+    
     function renderEditNoteModal() {
         return (
             <Modal
@@ -224,9 +229,9 @@ const NotesComponent = ({ route }) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <h2>{editNote.title}</h2>
+                        <Text>{editNote.title}</Text>
                         <TextInput
-                            style={[styles.input, { height: 100, textAlignVertical: 'top' }]}
+                            style={[styles.input, { height: '50%', textAlignVertical: 'top' }]}
                             onChangeText={(text) => setEditNote(prevState => ({ ...prevState, content: text }))}
                             value={editNote.content}
                             placeholder="Note Content"
@@ -238,6 +243,6 @@ const NotesComponent = ({ route }) => {
             </Modal>
         );
     }
-};
+};    
 
 export default NotesComponent;

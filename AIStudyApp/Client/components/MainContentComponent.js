@@ -42,15 +42,17 @@ const MainContent = ({ route, navigation }) => {
                 <HeaderComponent />
                 <Picker
                     selectedValue={selectedNoteContent}
-                    onValueChange={(itemValue) => {
+                    onValueChange={(itemValue, itemIndex) => {
                         setSelectedNoteContent(itemValue);
                     }}
                     style={{ height: 50, width: '100%' }}
                 >
+                    <Picker.Item label="Select a note" value={null} />
                     {notes.map((note, index) => (
                         <Picker.Item label={note.title} value={note.content} key={index} />
                     ))}
                 </Picker>
+
                 <Button 
                     title="Generate A Question" 
                     onPress={() =>  {

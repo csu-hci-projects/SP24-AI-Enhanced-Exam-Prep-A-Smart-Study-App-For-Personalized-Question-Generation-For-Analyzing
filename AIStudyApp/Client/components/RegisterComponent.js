@@ -16,6 +16,7 @@ const RegisterComponent = ({ navigation }) => {
                 body: JSON.stringify({
                     username,
                     password,
+                    notes: []
                 }),
             });
 

@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, notes } = req.body;
 
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
@@ -27,7 +27,7 @@ app.post('/register', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Registration failed. User already exists.' });
         }
 
-        users.push({ username, password });
+        users.push({ username, password, notes });
         await fs.writeFile(filePath, JSON.stringify(users, null, 2), { encoding: 'utf8' });
         res.json({ success: true, message: 'Registration successful' });
     } catch (error) {

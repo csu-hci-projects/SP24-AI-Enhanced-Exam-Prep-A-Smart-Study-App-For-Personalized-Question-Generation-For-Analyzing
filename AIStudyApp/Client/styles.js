@@ -19,17 +19,28 @@ export default StyleSheet.create({
         margin: 10,
         paddingLeft: 10, 
     },
+    logo: {
+        color:     '#fff',
+        fontSize:  24,
+        fontWeight:'bold',
     
+    },
     header: {
-        backgroundColor:'#4a90e2',
-        padding:        15,
-        alignItems:     'center',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: 60,
+        paddingHorizontal: 10,
+        backgroundColor: '#fff',
+    },
+    headerSection: {
+        flex: 1,
+        alignItems: 'center',
     },
     headerText: {
         color:     '#fff',
-        fontSize:  20,
-        fontWeight:'bold',
+        fontSize:  16,
+        textAlign: 'left',
     },
     question: {
         fontSize:  18,

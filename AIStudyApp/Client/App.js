@@ -5,6 +5,7 @@ import LoginPage from './components/LoginComponent';
 import MainContent from './components/MainContentComponent';
 import RegisterComponent from './components/RegisterComponent';
 import NotesComponent from './components/NotesComponent';
+import AboutUs from './components/AboutUs';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const App = () => {
         <Stack.Screen name="Register" component={RegisterComponent} />
         <Stack.Screen name="Main" component={MainContent} />
         <Stack.Screen name="Notes" component={NotesComponent} />
+        <Stack.Screen name="About" component={AboutUs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

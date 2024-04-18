@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, StatusBar, Text, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'; 
+import { View, Button, StatusBar, Text, KeyboardAvoidingView, Platform, Keyboard, TouchableOpacity } from 'react-native'; 
 import { Picker } from '@react-native-picker/picker';
 import getOpenAIResponse from './getOpenAIResponse';
 import handleAnswerSelect from './handleAnswerSelect';
@@ -39,20 +39,22 @@ const MainContent = ({ route, navigation }) => {
         >
             <View style={styles.container}>
                 <StatusBar style="auto" />
-                <HeaderComponent />
-                <Picker
-                    selectedValue={selectedNoteContent}
-                    onValueChange={(itemValue, itemIndex) => {
-                        setSelectedNoteContent(itemValue);
-                    }}
-                    style={{ height: 50, width: '100%' }}
-                >
-                    <Picker.Item label="Select a note" value={null} />
-                    {notes.map((note, index) => (
-                        <Picker.Item label={note.title} value={note.content} key={index} />
-                    ))}
-                </Picker>
-
+                <HeaderComponent username={username} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 10}}>
+                    <Picker
+                        selectedValue={selectedNoteContent}
+                        onValueChange={(itemValue, itemIndex) => setSelectedNoteContent(itemValue)}
+                        style={{ flex: 1, borderColor: 'gray', borderWidth: 0.1, padding: 10, borderRadius: 5}}
+                    >
+                        <Picker.Item label="Select a note" value="" />
+                        {notes.map((note, index) => (
+                            <Picker.Item label={note.title} value={note.content} key={index} />
+                        ))}
+                    </Picker>
+                </View>
+                <Text style={styles.question}>{currentQuestion.question}</Text>
+                <ChoicesContainer choices={currentQuestion.choices} handleAnswerSelect={(choiceLabel) => handleAnswerSelect(choiceLabel, currentQuestion, setFeedback)} />
+                <Text style={styles.feedback}>{feedback}</Text>
                 <Button 
                     title="Generate A Question" 
                     onPress={() =>  {
@@ -60,20 +62,11 @@ const MainContent = ({ route, navigation }) => {
                         getOpenAIResponse(selectedNoteContent, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback);
                     }} 
                 />
-                <Button 
-                    title="Notes" 
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        navigation.navigate('Notes', { username: username });
-                    }}
-                />
-                <Text style={styles.question}>{currentQuestion.question}</Text>
-                <ChoicesContainer choices={currentQuestion.choices} handleAnswerSelect={(choiceLabel) => handleAnswerSelect(choiceLabel, currentQuestion, setFeedback)} />
-                <Text style={styles.feedback}>{feedback}</Text>
                 <ChatHistoryComponent apiResponse={apiResponse} />
             </View>
         </KeyboardAvoidingView>
     );
 };
+
 
 export default MainContent;

@@ -63,7 +63,7 @@ app.post('/generate-question', async (req, res) => {
             {
                 model: 'gpt-3.5-turbo',
                 messages: [
-                    { role: 'system', content: 'Generate one Multiple Choice Quiz Question based on the notes provided. The answer should be the first of the answer choices. Be sure there are at least 4 answer choices. Make the questions unique from previous questions' },
+                    { role: 'system', content: 'Generate one Multiple Choice Quiz Question based on the notes provided. The answer should be the first of the answer choices. Be sure there are 4 answer choices. Make the questions unique from previous questions' },
                     { role: 'user', content: userInput },
                 ],
             },

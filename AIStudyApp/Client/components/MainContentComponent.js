@@ -31,6 +31,13 @@ const MainContent = ({ route, navigation }) => {
         }
     };
 
+    const getRandomSnippet = (noteContent) => {
+        const lines = noteContent.split('\n');
+        const start = Math.floor(Math.random() * lines.length);
+        const end = Math.min(start + Math.floor(Math.random() * (lines.length - start)), lines.length);
+        return lines.slice(start, end).join('\n');
+    };
+
     return (
         <KeyboardAvoidingView 
             style={{ flex: 1 }}
@@ -57,9 +64,18 @@ const MainContent = ({ route, navigation }) => {
                 <Text style={styles.feedback}>{feedback}</Text>
                 <Button 
                     title="Generate A Question" 
-                    onPress={() =>  {
+                    onPress={() => {
                         Keyboard.dismiss();
-                        getOpenAIResponse(selectedNoteContent, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback);
+                        const lines = selectedNoteContent.split('\n').filter(line => line.trim() !== '');
+
+                        if (lines.length >= 5) {
+                            const start = Math.floor(Math.random() * (lines.length - 4));
+                            const selectedLines = lines.slice(start, start + 5).join('\n');
+
+                            getOpenAIResponse(selectedLines, setCurrentQuestion, setApiResponse, setChatHistory, chatHistory, setFeedback);
+                        } else {
+                            setFeedback('Selected note does not contain enough content for generating questions.');
+                        }
                     }} 
                 />
                 <ChatHistoryComponent apiResponse={apiResponse} />
@@ -67,6 +83,5 @@ const MainContent = ({ route, navigation }) => {
         </KeyboardAvoidingView>
     );
 };
-
 
 export default MainContent;

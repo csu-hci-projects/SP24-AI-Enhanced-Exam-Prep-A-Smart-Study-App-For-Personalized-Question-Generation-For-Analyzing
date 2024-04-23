@@ -2,17 +2,18 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import Mason from '../assets/Mason-Photo.jpg';
 import Aaron from '../assets/Aaron-Marti.jpg';
-// import Maddie from '../assets/Maddie-Photo.jpg';
-// import Karla from '../assets/Karla-Photo.jpg';
-// import Carolyn from '../assets/Carolyn-Photo.jpg';
-// import Olivia from '../assets/Olivia-Photo.jpg';
-// import Caven from '../assets/Caven-Photo.jpg';
+import Maddie from '../assets/Maddie.png';
+import Caven from '../assets/Caven.png';
+import Karla from '../assets/Karla.png';
+import Carolyn from '../assets/Carolyn.png';
+import Olivia from '../assets/Olivia.png';
+
 
 const AboutUs = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>About Us</Text>
-            <Text>We are a team of dedicated individuals working on the AI Enhanced Exam Prep project. Our goal is to provide personalized question generation for effective studying.</Text>
+            <Text>At Intellinote, we are driven by a singular vision: to transform the way students engage with their studies through cutting-edge technology and personalized learning experiences. Our team comprises passionate professionals from various fields, including education, technology, and design, all committed to redefining the academic journey.</Text>
             <View style={styles.teamContainer}>
                 <View style={styles.teamMember}>
                     <Text style={styles.memberName}>Aaron Marti</Text>
@@ -22,7 +23,7 @@ const AboutUs = () => {
                     <Text style={styles.memberName}>Mason Coco</Text>
                     <Image source={Mason} style={styles.teamMemberImage} />
                 </View>
-                {/* <View style={styles.teamMember}>
+                <View style={styles.teamMember}>
                     <Text style={styles.memberName}>Maddie Kerl</Text>
                     <Image source={Maddie} style={styles.teamMemberImage} />
                 </View>
@@ -41,7 +42,7 @@ const AboutUs = () => {
                 <View style={styles.teamMember}>
                     <Text style={styles.memberName}>Caven Konkey</Text>
                     <Image source={Caven} style={styles.teamMemberImage} />
-                </View> */}
+                </View>
             </View>
         </View>
     );
@@ -53,6 +54,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
+        width: '100%',
+        alignSelf: 'center',
     },
     header: {
         fontSize: 24,
@@ -60,11 +63,17 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     teamContainer: {
+        flexDirection: 'row',  // Set the direction of items to row
+        flexWrap: 'wrap',      // Enable wrapping of items
+        justifyContent: 'center', // Center the items horizontally
         marginTop: 20,
+        width: '100%',         // Ensures this container takes the full width of its parent
     },
     teamMember: {
         alignItems: 'center',
         marginBottom: 20,
+        width: '50%',          // Each team member takes up 50% of the teamContainer width
+        maxWidth: '200px',     // Optional: prevents the boxes from becoming too large on bigger screens
     },
     memberName: {
         fontSize: 18,
@@ -76,5 +85,6 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 });
+
 
 export default AboutUs;
